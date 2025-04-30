@@ -186,7 +186,8 @@ h2{
     font-size: 40px;
 }
 h3{
-    font-size: 30px ;
+    font-size: 25px ;
+    margin: 2px;
 }
 
 
@@ -201,12 +202,14 @@ h3{
     font-weight: 800;
     font-style: normal;
     
+    
    
 }
 .hoja p{
     color: var(--color-4);
     margin: 8px;
-    align-self: center;    
+    align-self: center; 
+    font-size: 21px;   
 }
 
 .bordes{
