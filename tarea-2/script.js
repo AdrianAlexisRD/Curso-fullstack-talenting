@@ -1,4 +1,38 @@
 
+let modoStyle = localStorage.getItem('modoStyle') === 'true';
+
+const aplicarTema = () => {
+  
+  const colorA = ['#F5EEDD','#7AE2CF','#077A7D', '#06202B']
+  const colorB = ['#EBD3F8', '#AD49E1', '#7A1CAC', '#2E073F']
+
+  if (modoStyle) {
+    colorA.forEach((color, index) => {
+      document.documentElement.style.setProperty(`--color-${index + 1}`, color);
+    })
+  } else {
+    colorB.forEach((color, index) => {
+      document.documentElement.style.setProperty(`--color-${index + 1}`, color);
+    })
+  }
+};
+
+const cambioColor = () => {
+  const botonColor = document.getElementById('botonColor');
+
+  botonColor.addEventListener('click', () => {
+    modoStyle = !modoStyle;
+    localStorage.setItem('modoStyle', modoStyle);
+    aplicarTema();
+  });
+};
+
+// Aplicar el tema cuando cargue la página
+aplicarTema();
+cambioColor();
+
+
+
 // manipulamos el DOM para tener acceso a la propiedades hojas donde se va a añadir el nuevo contenido
 const hoja1 = document.getElementById('hoja1');
 const hoja2 = document.getElementById('hoja2');
@@ -59,39 +93,7 @@ const aparecer = (hoja, contenido, mensaje) => {
 }
 
 
-let modoStyle = localStorage.getItem('modoStyle') === 'true';
 
-
-
-const aplicarTema = () => {
-  
-  const colorA = ['#F5EEDD','#7AE2CF','#077A7D', '#06202B']
-  const colorB = ['#EBD3F8', '#AD49E1', '#7A1CAC', '#2E073F']
-
-  if (modoStyle) {
-    colorA.forEach((color, index) => {
-      document.documentElement.style.setProperty(`--color-${index + 1}`, color);
-    })
-  } else {
-    colorB.forEach((color, index) => {
-      document.documentElement.style.setProperty(`--color-${index + 1}`, color);
-    })
-  }
-};
-
-const cambioColor = () => {
-  const botonColor = document.getElementById('botonColor');
-
-  botonColor.addEventListener('click', () => {
-    modoStyle = !modoStyle;
-    localStorage.setItem('modoStyle', modoStyle);
-    aplicarTema();
-  });
-};
-
-// Aplicar el tema cuando cargue la página
-aplicarTema();
-cambioColor();
 
 
     
