@@ -3,7 +3,7 @@ body {
     font-family: "Poetsen One", sans-serif;
     font-weight: 400;
     font-style: normal;
-    background: linear-gradient(to bottom, var(--color-3), var(--color-1))
+    background: linear-gradient(to bottom, var(--color-3), var(--color-2))
 }
 
 :root{
@@ -60,7 +60,7 @@ header a:hover{
 #conteiner-inf {
     display: flex;
     border-bottom: 3px solid var(--color-4);
-    width: 70%; height: 700px; ;
+    width: 70%; height: 900px; ;
     justify-self: center;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -141,7 +141,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 900px;
+    width: 80%;
 }
 
 
@@ -193,7 +193,7 @@ h3{
 
 
 .hoja{
-    width: 350px; height: 550px;
+    width: 400px; height: 550px;
     background-color: var(--color-1);
     border: var(--borde) ;
     display: flex;
@@ -235,7 +235,7 @@ h3{
 
 .oculto{
     opacity: 0;
-    transition: opacity 2s ease-out;
+    transition: opacity 1s ease-out;
 }
 
 .conteiner-hoja{

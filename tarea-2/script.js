@@ -1,34 +1,81 @@
 
-let modoStyle = localStorage.getItem('modoStyle') === 'true';
-
+let n = 0; 
 const aplicarTema = () => {
   
   const colorA = ['#F5EEDD','#7AE2CF','#077A7D', '#06202B']
   const colorB = ['#EBD3F8', '#AD49E1', '#7A1CAC', '#2E073F']
+  const colorC = ['#FFDEDE', '#FF0B55', '#CF0F47', '#000000']
+  const colorD = ['#EEEEEE', '#FFD369', '#393E46', '#222831']
+  const colorE = ['#A5D7E8', '#576CBC', '#19376D', '#0B2447']
 
-  if (modoStyle) {
-    colorA.forEach((color, index) => {
-      document.documentElement.style.setProperty(`--color-${index + 1}`, color);
-    })
-  } else {
-    colorB.forEach((color, index) => {
-      document.documentElement.style.setProperty(`--color-${index + 1}`, color);
-    })
-  }
+  // let anterior = null;
+
+  // function aleatorio(min, max) {
+  //   let nuevo;
+  //   do {
+  //     nuevo = Math.floor(Math.random() * (max - min + 1)) + min;
+  //   } while (nuevo === anterior);
+  //   anterior = nuevo;
+  //   return nuevo;
+  // }
+  // Inicializa fuera de la función para mantener su valor entre llamadas
+
+  const escalado = () => {
+    n = n % 5 + 1;
+    return n;
+  };
+  
+    
+  let propiedadesCss= document.documentElement.style
+
+switch(escalado().toString()){
+  case"1":
+  colorA.forEach((color, index) => {
+    propiedadesCss.setProperty(`--color-${index + 1}`, color);
+    console.log("A")
+  })
+  
+  break
+
+  case"2":
+  colorB.forEach((color, index) => {
+    propiedadesCss.setProperty(`--color-${index + 1}`, color);
+    console.log("B")
+  })
+  break
+
+  case"3":
+  colorC.forEach((color, index) => {
+    propiedadesCss.setProperty(`--color-${index + 1}`, color);
+    console.log("C")
+  })
+  break
+
+  case"4":
+  colorD.forEach((color, index) => {
+    propiedadesCss.setProperty(`--color-${index + 1}`, color);
+    console.log("D")
+  })
+  break
+  case"5":
+  colorE.forEach((color, index) => {
+    propiedadesCss.setProperty(`--color-${index + 1}`, color);
+    console.log("E")
+  })
+  break
+}
+
 };
 
 const cambioColor = () => {
   const botonColor = document.getElementById('botonColor');
 
   botonColor.addEventListener('click', () => {
-    modoStyle = !modoStyle;
-    localStorage.setItem('modoStyle', modoStyle);
     aplicarTema();
   });
 };
 
 // Aplicar el tema cuando cargue la página
-aplicarTema();
 cambioColor();
 
 
