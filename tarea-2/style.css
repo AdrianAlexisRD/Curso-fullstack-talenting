@@ -93,6 +93,18 @@ section p {
     margin: 20px 25px;
     
 }
+#conteiner-logo{
+    animation: translacion 2s ease-in-out ;
+}
+
+@keyframes translacion {
+    from{
+        transform: translateX(30vw);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
 
 .color1 {
     color: var(--color-2);
@@ -118,6 +130,20 @@ section p {
 
 #img-self:hover{
     height: 300px; width: 300px ;
+}
+h1{
+    animation: letras 4s ease-out infinite;
+    
+}
+
+@keyframes letras {
+    0%{opacity: 0.1;}
+    35%{opacity: 0.5;}
+    60%{opacity: 1;}
+    90%{opacity: 0.5;}
+    100%{opacity: 0.1;}
+
+    
 }
 
 h1,
@@ -235,7 +261,7 @@ h3{
 
 .oculto{
     opacity: 0;
-    transition: opacity 1s ease-out;
+    transition: opacity 1s ease;
 }
 
 .conteiner-hoja{

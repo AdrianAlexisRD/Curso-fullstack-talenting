@@ -1,9 +1,8 @@
 
-let n = 0; 
+let n = 1; 
 const aplicarTema = () => {
-  
-  const colorA = ['#F5EEDD','#7AE2CF','#077A7D', '#06202B']
-  const colorB = ['#EBD3F8', '#AD49E1', '#7A1CAC', '#2E073F']
+  const colorA = ['#EBD3F8', '#AD49E1', '#7A1CAC', '#2E073F']
+  const colorB = ['#F5EEDD','#7AE2CF','#077A7D', '#06202B']
   const colorC = ['#FFDEDE', '#FF0B55', '#CF0F47', '#000000']
   const colorD = ['#EEEEEE', '#FFD369', '#393E46', '#222831']
   const colorE = ['#A5D7E8', '#576CBC', '#19376D', '#0B2447']
@@ -20,10 +19,7 @@ const aplicarTema = () => {
   // }
   // Inicializa fuera de la función para mantener su valor entre llamadas
 
-  const escalado = () => {
-    n = n % 5 + 1;
-    return n;
-  };
+  const escalado = () => { n = n % 5 + 1; return n; };
   
     
   let propiedadesCss= document.documentElement.style
@@ -77,6 +73,7 @@ const cambioColor = () => {
 
 // Aplicar el tema cuando cargue la página
 cambioColor();
+
 
 
 
@@ -145,3 +142,37 @@ const aparecer = (hoja, contenido, mensaje) => {
 
     
 
+// let n = localStorage.getItem('temaActual')
+//   ? parseInt(localStorage.getItem('temaActual'))
+//   : 0;
+
+// const aplicarTema = () => {
+//   const temas = [
+//     ['#EBD3F8', '#AD49E1', '#7A1CAC', '#2E073F'],
+//     ['#F5EEDD', '#7AE2CF', '#077A7D', '#06202B'],
+//     ['#FFDEDE', '#FF0B55', '#CF0F47', '#000000'],
+//     ['#EEEEEE', '#FFD369', '#393E46', '#222831'],
+//     ['#A5D7E8', '#576CBC', '#19376D', '#0B2447']
+//   ];
+
+//   // Cicla de 0 a 4
+//   n = (n + 1) % temas.length;
+//   localStorage.setItem('temaActual', n);
+
+//   let propiedadesCss = document.documentElement.style;
+
+//   temas[n].forEach((color, i) => {
+//     propiedadesCss.setProperty(`--color-${i + 1}`, color);
+//   });
+
+//   console.log(`Tema actual: ${n}`);
+// };
+
+// const cambioColor = () => {
+//   const botonColor = document.getElementById('botonColor');
+//   botonColor.addEventListener('click', aplicarTema);
+// };
+// 
+// // Aplica el tema guardado al cargar
+// aplicarTema();
+// cambioColor();
