@@ -63,6 +63,7 @@ header a:hover{
     width: 70%; height: 900px; ;
     justify-self: center;
     margin-top: 50px;
+    padding-top: 50px;
     margin-bottom: 50px;
     padding-bottom: 100px;
 
@@ -71,7 +72,7 @@ header a:hover{
 
 section p {
 
-    align-self: center;
+    align-self: flex-start;
     font-size: 25px;
     color: var(--color-1);
 }
@@ -84,9 +85,9 @@ section p {
 #conteiner-self {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
+    align-items: center;
     margin-right: 30px;
+    
 }
 
 #logo {
@@ -99,7 +100,7 @@ section p {
 
 @keyframes translacion {
     from{
-        transform: translateX(30vw);
+        transform: translateX(20vw);
     }
     to{
         transform: translateX(0);
@@ -122,7 +123,7 @@ section p {
     border-radius: 50%;
     box-shadow: 8px 8px 12px var(--color-4);
     margin-top: 20px;
-    transition: height 2s, width 2s; 
+    transition: height 1s, width 1s; 
      
 }
 
@@ -132,11 +133,32 @@ section p {
     height: 300px; width: 300px ;
 }
 h1{
-    animation: letras 4s ease-out infinite;
+    /* animation: letras 4s ease-out infinite; */
     
+    font-family: monospace;
+    font-size: 1.5rem ;
+    margin-inline: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid ;
+    animation: typing 4s steps(22) forwards , blink 1s step-end infinite;
+}
+@keyframes typing {
+    from{
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
 }
 
-@keyframes letras {
+@keyframes blink {
+    50%{
+        border-color: transparent;
+    }
+}
+
+/* @keyframes letras {
     0%{opacity: 0.1;}
     35%{opacity: 0.5;}
     60%{opacity: 1;}
@@ -144,7 +166,7 @@ h1{
     100%{opacity: 0.1;}
 
     
-}
+} */
 
 h1,
 h2 {
@@ -158,7 +180,7 @@ h2 {
     align-items: center;
     padding-bottom: 60px;
     padding: 100px;
-    width: 60%;
+    width: 90%;
     justify-self: center;
     border-bottom: 3px solid var(--color-4);
 }
@@ -186,6 +208,7 @@ footer {
     display: flex;
     align-items: center;
     gap: 10px;
+
 }
 
 footer a:hover{
@@ -326,7 +349,7 @@ h3{
     footer {
         gap: 15px;
         padding-top: 0%;
-        margin-top: 0%;
+        margin-top: 100px;
     }
     h2{
         padding-top: 60px;

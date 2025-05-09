@@ -1,78 +1,39 @@
 
-let n = 1; 
+let n = 0;
+
 const aplicarTema = () => {
-  const colorA = ['#EBD3F8', '#AD49E1', '#7A1CAC', '#2E073F']
-  const colorB = ['#F5EEDD','#7AE2CF','#077A7D', '#06202B']
-  const colorC = ['#FFDEDE', '#FF0B55', '#CF0F47', '#000000']
-  const colorD = ['#EEEEEE', '#FFD369', '#393E46', '#222831']
-  const colorE = ['#A5D7E8', '#576CBC', '#19376D', '#0B2447']
+  const temas = [
+    ['#EBD3F8', '#AD49E1', '#7A1CAC', '#2E073F'],
+    ['#F5EEDD', '#7AE2CF', '#077A7D', '#06202B'],
+    ['#FFDEDE', '#FF0B55', '#CF0F47', '#000000'],
+    ['#EEEEEE', '#FFD369', '#393E46', '#222831'],
+    ['#A5D7E8', '#576CBC', '#19376D', '#0B2447']
+  ];
 
-  // let anterior = null;
+  // Cicla de 0 a 4
+  n = (n + 1) % temas.length;
+ 
 
-  // function aleatorio(min, max) {
-  //   let nuevo;
-  //   do {
-  //     nuevo = Math.floor(Math.random() * (max - min + 1)) + min;
-  //   } while (nuevo === anterior);
-  //   anterior = nuevo;
-  //   return nuevo;
-  // }
-  // Inicializa fuera de la función para mantener su valor entre llamadas
+  let propiedadesCss = document.documentElement.style;
 
-  const escalado = () => { n = n % 5 + 1; return n; };
-  
-    
-  let propiedadesCss= document.documentElement.style
+  temas[n].forEach((color, i) => {
+    propiedadesCss.setProperty(`--color-${i + 1}`, color);
+  });
 
-switch(escalado().toString()){
-  case"1":
-  colorA.forEach((color, index) => {
-    propiedadesCss.setProperty(`--color-${index + 1}`, color);
-    console.log("A")
-  })
-  
-  break
-
-  case"2":
-  colorB.forEach((color, index) => {
-    propiedadesCss.setProperty(`--color-${index + 1}`, color);
-    console.log("B")
-  })
-  break
-
-  case"3":
-  colorC.forEach((color, index) => {
-    propiedadesCss.setProperty(`--color-${index + 1}`, color);
-    console.log("C")
-  })
-  break
-
-  case"4":
-  colorD.forEach((color, index) => {
-    propiedadesCss.setProperty(`--color-${index + 1}`, color);
-    console.log("D")
-  })
-  break
-  case"5":
-  colorE.forEach((color, index) => {
-    propiedadesCss.setProperty(`--color-${index + 1}`, color);
-    console.log("E")
-  })
-  break
-}
-
+  console.log(`Tema actual: ${n}`);
 };
 
 const cambioColor = () => {
   const botonColor = document.getElementById('botonColor');
-
-  botonColor.addEventListener('click', () => {
-    aplicarTema();
-  });
+  botonColor.addEventListener('click', ()=>{
+    aplicarTema()
+  } 
+ 
+);
 };
 
-// Aplicar el tema cuando cargue la página
-cambioColor();
+cambioColor()
+// Aplica el tema guardado al cargar
 
 
 
@@ -137,42 +98,76 @@ const aparecer = (hoja, contenido, mensaje) => {
 }
 
 
-
-
-
-    
-
-// let n = localStorage.getItem('temaActual')
-//   ? parseInt(localStorage.getItem('temaActual'))
-//   : 0;
-
 // const aplicarTema = () => {
-//   const temas = [
-//     ['#EBD3F8', '#AD49E1', '#7A1CAC', '#2E073F'],
-//     ['#F5EEDD', '#7AE2CF', '#077A7D', '#06202B'],
-//     ['#FFDEDE', '#FF0B55', '#CF0F47', '#000000'],
-//     ['#EEEEEE', '#FFD369', '#393E46', '#222831'],
-//     ['#A5D7E8', '#576CBC', '#19376D', '#0B2447']
-//   ];
+//   const colorA = ['#EBD3F8', '#AD49E1', '#7A1CAC', '#2E073F']
+//   const colorB = ['#F5EEDD','#7AE2CF','#077A7D', '#06202B']
+//   const colorC = ['#FFDEDE', '#FF0B55', '#CF0F47', '#000000']
+//   const colorD = ['#EEEEEE', '#FFD369', '#393E46', '#222831']
+//   const colorE = ['#A5D7E8', '#576CBC', '#19376D', '#0B2447']
 
-//   // Cicla de 0 a 4
-//   n = (n + 1) % temas.length;
-//   localStorage.setItem('temaActual', n);
+//   // let anterior = null;
 
-//   let propiedadesCss = document.documentElement.style;
+//   // function aleatorio(min, max) {
+//   //   let nuevo;
+//   //   do {
+//   //     nuevo = Math.floor(Math.random() * (max - min + 1)) + min;
+//   //   } while (nuevo === anterior);
+//   //   anterior = nuevo;
+//   //   return nuevo;
+//   // }
+//   // Inicializa fuera de la función para mantener su valor entre llamadas
 
-//   temas[n].forEach((color, i) => {
-//     propiedadesCss.setProperty(`--color-${i + 1}`, color);
-//   });
+//   const escalado = () => { n = n % 5 + 1; return n; };
+  
+    
+//   let propiedadesCss= document.documentElement.style
 
-//   console.log(`Tema actual: ${n}`);
+// switch(escalado().toString()){
+//   case"1":
+//   colorA.forEach((color, index) => {
+//     propiedadesCss.setProperty(`--color-${index + 1}`, color);
+//     console.log("A")
+//   })
+  
+//   break
+
+//   case"2":
+//   colorB.forEach((color, index) => {
+//     propiedadesCss.setProperty(`--color-${index + 1}`, color);
+//     console.log("B")
+//   })
+//   break
+
+//   case"3":
+//   colorC.forEach((color, index) => {
+//     propiedadesCss.setProperty(`--color-${index + 1}`, color);
+//     console.log("C")
+//   })
+//   break
+
+//   case"4":
+//   colorD.forEach((color, index) => {
+//     propiedadesCss.setProperty(`--color-${index + 1}`, color);
+//     console.log("D")
+//   })
+//   break
+//   case"5":
+//   colorE.forEach((color, index) => {
+//     propiedadesCss.setProperty(`--color-${index + 1}`, color);
+//     console.log("E")
+//   })
+//   break
+// }
+
 // };
 
 // const cambioColor = () => {
 //   const botonColor = document.getElementById('botonColor');
-//   botonColor.addEventListener('click', aplicarTema);
+
+//   botonColor.addEventListener('click', () => {
+//     aplicarTema();
+//   });
 // };
-// 
-// // Aplica el tema guardado al cargar
-// aplicarTema();
+
+// // Aplicar el tema cuando cargue la página
 // cambioColor();
