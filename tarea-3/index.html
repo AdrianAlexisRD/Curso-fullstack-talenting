@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <section>
+        <form onsubmit="evaluar(event)">
+            <h1>Calculadora</h1>
+
+            <div id="conteiner-input">
+                <input id="entrada" name="entrada" type="number" placeholder="agrega el numero">
+                <div id="resultado"></div>
+            </div>
+            <div id="conteiner-btn">
+                <button class="btn" onclick="sumar()"><strong>+</strong></button>
+                <button class="btn" onclick="resta()"><strong>-</strong></button>
+                <button class="btn" onclick="multi()"><strong>*</strong></button>
+                <button class="btn" onclick="divi()"><strong>/</strong></button>
+                <button class="btn" onclick="modulo()"><strong>%</strong></button>
+                <button class="btn" onclick="expo()"><strong>**</strong></button>
+            </div>
+            
+        </form>
+
+
+    </section>
+
+    <script src="scritp.js"></script>
+</body>
+
+</html>
