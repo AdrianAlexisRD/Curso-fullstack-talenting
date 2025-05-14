@@ -1,88 +1,72 @@
 const input = document.querySelector('#entrada')
 const button = document.getElementById('add')
 const conteinerList = document.getElementById('conteinerList')
-const allList = document.getElementById('cantidad-tarea')
+const catidadTareasGuardadas = document.getElementById('cantidad-tarea')
 const tareasRealizadas = document.getElementById('tareas-realisadas')
 const tareasNoRealizadas =document.getElementById('tareas-no-realizadas')
 
-// Crear tarea
-let count = 0
+let data = []
 
+const mainFunction = (input)=>{
 button.addEventListener('click', () => {
-  let tarea = input.value
-
-  // filtramos si la tearea es valida, si tarea = nada nos tira un alert
-  // y si la longitud del STRING es menor a 4 
+  const tarea = input.value.trim();
   if (tarea === "" || tarea.length < 4) {
-    alert('favor coloque una tarea valida')
+    alert('coloque una tarea válida')
     return
   }
 
-  // Se crea el li con su contenido
-  let li = document.createElement('li')
+  
+  const li = document.createElement('li')
   li.classList.add('tarea')
-  li.id = count
-  li.innerHTML = `<p id="text${count}">${tarea}</p><div class="conteiner-check-delete"><input class="check" 
-  type="checkbox" id="${count}"><div class="borrar" id="borrar${count}">Delete</div></div>`
-  count++
-  // se agrega una nueva tarea
+  li.innerHTML = `
+    <p>${tarea}</p>
+    <div class="conteiner-check-delete">
+    <input class="check" type="checkbox">
+    <div class="borrar">Delete</div></div>`
   conteinerList.appendChild(li)
-  input.value=""
+  input.value = ""
+  
+  actualizarConteo()
+  const checkbox = li.querySelector('.check')
+  const borrar = li.querySelector('.borrar')
+  const parrafo = li.querySelector('p')
 
+  const t = li.children[0].innerText
+  data.push(t)
+  console.log(t)
+  console.log(data)
+  localStorage.setItem('llave', data )
 
+console.log(checkbox)
+// subrrayar o verificar checkbox
+  checkbox.addEventListener('click', () => {
+    parrafo.classList.toggle('subrrayar')
+    actualizarConteo()
+  });
 
+// borramos tarea
+  borrar.addEventListener('click', () => {
+    console.log(li)
+    li.remove()
+    actualizarConteo()
+  });
+});
+}
+mainFunction(input)
+const desplegarTareas= ()=>{
+const tareasGuardadas =localStorage.getItem('llave')
+console.log(tareasGuardadas)
 
-//cuando damos click en 
-  li.addEventListener('click', () => {
-    let check=0
-    let noCheck= 0
+}
+desplegarTareas()
 
-    const actualizarConteo= ()=>{
-      tareasRealizadas.innerText=check
-      tareasNoRealizadas.innerText=noCheck
-    }    
-
-    const validarCheck = () => {
-    const checkBox = document.querySelectorAll('.check')
-    
-
-      let i = 0
-      do {
-        let elementSu = document.getElementById(`text${i}`)
-
-        if(checkBox[i].checked === true){
-          elementSu.style.textDecoration = 'line-through'
-          check++
-          actualizarConteo()
-        
-        }
-        if(checkBox[i].checked==false){
-          elementSu.style.textDecoration = 'none'
-          noCheck++
-          
-        }
-        actualizarConteo()
-        i++
-        
-      } while (i < checkBox.length)
-      
-
-   }
-    const borrarTarea =()=>{
-        let b = 0
-    do{
-      let elementBorra = document.getElementById(`borrar${b}`)
-      let eParaBorrar = document.getElementById(`${b}`)
-      elementBorra.addEventListener('click', ()=>{
-        eParaBorrar.remove()
-        count--
-        console.log('se borro elemento')
-      })}
-    while(b<li.length)
-    }
-
-    validarCheck()
-    borrarTarea()
-  })
-  allList.innerText= count
-})
+// Función para actualizar contadores
+const actualizarConteo=()=>{
+  const tareas = conteinerList.querySelectorAll('li')
+  const completadas = conteinerList.querySelectorAll('.check:checked').length
+  const pendientes = tareas.length - completadas
+  catidadTareasGuardadas.innerText = tareas.length
+  tareasRealizadas.innerText = completadas
+  tareasNoRealizadas.innerText = pendientes
+}
+actualizarConteo()
