@@ -21,6 +21,11 @@ header{
     border: solid 4px rgb(139, 138, 138);
     font-size: 20px;
 }
+#entrada:hover{
+    border-color: rgba(71, 71, 206, 0.642);
+
+}
+
 .tarea{
     background-color:rgb(227, 224, 224) ;
     display: flex;
@@ -50,6 +55,7 @@ header{
     background-color: #fff;
     color: black;
     font-weight: 800;
+    border-color: rgba(71, 71, 206, 0.642);
 }
 
 .borrar{
@@ -101,4 +107,9 @@ h3{
 
 .subrrayar{
     text-decoration: line-through;
+}
+
+.agregar-tarea{
+    display: flex;
+    gap: 10px;  
 }
