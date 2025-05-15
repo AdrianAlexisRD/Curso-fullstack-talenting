@@ -10,7 +10,6 @@ let count = 0
 
 button.addEventListener('click', () => {
   let tarea = input.value
-
   // filtramos si la tearea es valida, si tarea = nada nos tira un alert
   // y si la longitud del STRING es menor a 4 
   if (tarea === "" || tarea.length < 4) {
@@ -28,24 +27,20 @@ button.addEventListener('click', () => {
   // se agrega una nueva tarea
   conteinerList.appendChild(li)
   input.value=""
+  allList.innerText= count
+  actualizarConteo()
+
+})
 
 
+  let check=0
+  let noCheck=count-check
+const checkBox = li.querySelector('.check')
+console.log(checkBox)
 
 
-//cuando damos click en 
-  li.addEventListener('click', () => {
-    let check=0
-    let noCheck= 0
-
-    const actualizarConteo= ()=>{
-      tareasRealizadas.innerText=check
-      tareasNoRealizadas.innerText=noCheck
-    }    
-
-    const validarCheck = () => {
-    const checkBox = document.querySelectorAll('.check')
+  checkBox.addEventListener('click', () => {
     
-
       let i = 0
       do {
         let elementSu = document.getElementById(`text${i}`)
@@ -54,21 +49,26 @@ button.addEventListener('click', () => {
           elementSu.style.textDecoration = 'line-through'
           check++
           actualizarConteo()
-        
         }
         if(checkBox[i].checked==false){
           elementSu.style.textDecoration = 'none'
-          noCheck++
-          
+          noCheck++  
         }
-        actualizarConteo()
         i++
-        
       } while (i < checkBox.length)
-      
+        
+        actualizarConteo()
+        borrarTarea()
 
-   }
-    const borrarTarea =()=>{
+      }
+  )
+
+    const actualizarConteo= ()=>{
+      tareasRealizadas.innerText=check
+      tareasNoRealizadas.innerText=noCheck
+    }    
+
+const borrarTarea =()=>{
         let b = 0
     do{
       let elementBorra = document.getElementById(`borrar${b}`)
@@ -81,8 +81,4 @@ button.addEventListener('click', () => {
     while(b<li.length)
     }
 
-    validarCheck()
-    borrarTarea()
-  })
-  allList.innerText= count
-})
+
