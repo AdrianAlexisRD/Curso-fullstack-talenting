@@ -1,4 +1,4 @@
-// const notas = [98,87,99,100]
+const notas = [98,87,99,100]
 // metodos para agregar o eliminar elementos de un array 
 // notas.push(63); // agrega al final del array 
 // notas.pop();// elemina el ultimo 
@@ -19,7 +19,9 @@ console.log(comidas.includes("mofongo"));// Verifica si un elemento existe
 // Metodos para modificar un array
 const colores = ["azul","roja","amarrillo","verde"]
 
-colores.splice(1,0)// Elimina elementos especifico por su posicion
+
+
+colores.splice(1,3)// Elimina elementos especifico por su posicion
 colores.splice(1,2, "violeta")// agrega elementos por su posicion
 console.log(colores)
 

@@ -33,6 +33,7 @@ button.addEventListener('click', () => {
   }
 crearLi(tarea)
 })};
+
 createElement(input)
 
 // Marcar como checked, subrrayar y borrar tareas
