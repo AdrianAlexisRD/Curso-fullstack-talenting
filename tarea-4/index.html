@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Cedarville+Cursive&family=Exile&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="list-ul-square.png">
+    <link rel="stylesheet" href="style.css">
+    
+    <title>To Do List</title>
+</head>
+<body>
+    <header>
+        <h1>To Do List</h1>
+    </header>
+    <div id="conteiner-all">
+        <section class="agregar-tarea">
+            <input id="entrada" type="text" alt="entrada" placeholder="Add one thing that you want to do ">
+            <button class="btn" id="add">Add</button>
+            <button class="btn" id="clean" >Clean</button>
+        </section>
+        <section>
+            <div id="conteiner-contador-tarea">
+                <div class="contadores"><img class="icon" src="list.png" alt=""><h3 id="cantidad-tarea">0</h3></div>
+                <div class="contadores" ><img class="icon" src="check-square.png" alt=""><h3 id="tareas-realisadas">0</h3></div>
+                <div class="contadores" ><img class="icon" id="icon3" src="checkbox.png" alt=""><h3 id="tareas-no-realizadas">0</h3></div>
+            </div>
+            <ul id="conteinerList">
+           
+            </ul>
+
+
+        </section>
+    </div>    
+    <script src="script.js"></script>
+</body>
+</html>
