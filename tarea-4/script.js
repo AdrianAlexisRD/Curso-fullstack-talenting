@@ -9,13 +9,14 @@ const clean = document.getElementById('clean')
 let data = []
 
 function crearLi (tarea){
+
   const li = document.createElement('li')
   li.classList.add('tarea')
   li.innerHTML = tarea
   ul.appendChild(li)
   input.value = ""
+
   if(li.querySelectorAll('.subrrayar').length==1){
-  console.log(li.querySelectorAll('.subrrayar'))
   const checkboxes = li.querySelectorAll('.check');
   checkboxes.forEach(checkbox => {
   checkbox.checked = true;});
@@ -36,11 +37,13 @@ button.addEventListener('click', () => {
   const ahora = new Date();
   const horas = ahora.getHours();
   const minutos = ahora.getMinutes();
+  const dia = ahora.getDate()
+  const mes = ahora.getMonth()
   let tareaCreada=`
     <input class="check" type="checkbox">
     <p>${tarea}</p>
     <div class="conteiner-check-delete">
-    <p>${horas}:${minutos}</p>
+    <p>${horas}:${minutos} ${dia}/${mes+1}</p>
     <div class="borrar"><img src="trash-x.png"></div></div>`
 crearLi(tareaCreada)
 })};
@@ -87,8 +90,8 @@ actualizarConteo()
 
 const almacenarTarea=()=>{
   data=[]
-  let er = ul.querySelectorAll('li')
-  for (const element of er) {
+  let liEnPantalla = ul.querySelectorAll('li')
+  for (const element of liEnPantalla) {
   data.push(element.innerHTML)
 
 }
@@ -106,6 +109,6 @@ const imprimirTareasGuardadas=(tareas)=>{
   }
 }
 desplegarTareas()
-console.log()
+
 
 

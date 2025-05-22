@@ -72,13 +72,14 @@ header{
     margin: 10px;
 }
 .borrar:hover{
-    font-size: 22px;
+    font-size: 30px;
     cursor: pointer;
     
 }
 .conteiner-check-delete{
     display: flex;
     align-items: center;
+    width: 30%;
     gap: 10px;
     
 }
@@ -100,7 +101,8 @@ header{
     align-items: center;
     flex-direction: column;
     gap: 10px;
-    margin-top: 30px;
+    margin: 30px;
+
 }
 .check{
     align-self: center;
