@@ -5,7 +5,8 @@ const ul = document.querySelector('ul');
 const key = 'c0b72fe99b6039fa538260e9c114602e';
 
 
-let nombresBusqueda= []
+let ciudadesBuscadas= []
+
 const clima = async (busqueda,latLon) => {
 const city = document.getElementById('city').value.trim();
 const parametros = 'metric'
@@ -21,11 +22,12 @@ let consulta = `q=${busqueda}`
       const response = await fetch(url)
       const data = await response.json()
       if(data.cod=== 200){
-        localStorage.setItem('llave', JSON.stringify(nombresBusqueda))
-        nombresBusqueda.push(data.name)
+        ciudadesBuscadas.push(data.name)
+        localStorage.setItem('lastCity', JSON.stringify(data.name))
+        localStorage.setItem('cities', JSON.stringify(ciudadesBuscadas))
         crearDiv(data)
       }else{
-        mostrar.innerHTML=`ciudad no encontrada`
+        alert(`ciudad no encontrada`)
       }}
   catch(error){
       console.log('error al cargar la informacion')
@@ -91,23 +93,22 @@ const crearDiv =(data)=>{
 }
 
 const historialDeBusqueda= ()=>{
-  nombresBusqueda.forEach(nombre, ()=>{
-    const li= document.createElement('li')
-    li.innerHTML=`${nombre}`
-    ul.appendChild(li)
+  const historial =JSON.parse(localStorage.getItem('cities'))
+  console.log(typeof(historial))
+  for (const ciudad of historial) {
+      const li= document.createElement('li')
+    li.innerHTML=`${ciudad}`
     
-  })
+    ul.appendChild(li)
+  }
 }
 
 
 const ultimaBusqueda = ()=>{
-  const busqueda =JSON.parse(localStorage.getItem('llave'))
-  for (const ciudad of busqueda) {
-    nombresBusqueda.push(ciudad)
-  }
+  const busqueda =JSON.parse(localStorage.getItem('lastCity'))
 console.log(busqueda)
   clima(busqueda)
 }
 
 ultimaBusqueda()
-// historialDeBusqueda()
+historialDeBusqueda()
