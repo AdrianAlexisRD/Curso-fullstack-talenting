@@ -1,9 +1,9 @@
 :root{
-    --colorBg: #eeeeee;
+    --colorBg: #fff;
     --colorText: #fff ;
-    --colorTema1: #2a5942;
-    --colortTema2: #f8f9f9;
-    --colortTema3: #F79B72;
+    --colorTema1: #0E2148;
+    --colortTema2: #14131a;
+    --colortTema3: #B2FFFF;
 }
 *{
     padding: 0% 0%;
@@ -11,12 +11,28 @@
     font-family: "Press Start 2P", system-ui;
     font-weight: 300;
     font-style: normal;
+    /* text-shadow: 2px 2px 6px var(--colortTema2); */
 }
 #logo{
-    background: linear-gradient(to bottom, var(--colortTema2), var(--colortTema3));
+    background: linear-gradient(to bottom, #fff 30%, #B2FFFF);
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* text-shadow: 2px 2px 2px #fff; */
+    animation-delay: 2s;
+    animation: aparecer 2s ease;
+    
+}
+#conteinerLogo{
+    background-color: #0E2148;
+    border-radius: 5px;
+    padding: 8px;
+}
+h1{
+    display: flex;
+    
+}
+#logoCloud{
+    font-size: 50px;
+    margin-right: 5px;
 }
 header{
     display: flex;
@@ -25,15 +41,19 @@ header{
     position: absolute;
     left: 0%;
     top: 0%;
-    width: 100%; height: 60px;
+    width: 100%; height: 80px;
     color: var(--colorText);
-    background-color: var(--colorTema1);
+    background-color: var(--colorBg);
+    border-bottom:solid 4px var(--colorTema1);
+    box-shadow: 2px 2px 4px black;
+    border-radius: 0px 0px 20px 20px;
 }
 body{
-    background-color: var(--colorBg);
-    height: 100vh;
+    justify-self: center;
+    background-color: var(--colorText);
+    width: 95vw; height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 #conteiner-inf{
@@ -43,39 +63,67 @@ height: 60%;
 }
 
 button{
-    background-color: var(--colorTema1);
-    color: var(--colorText);
+    background-color: var(--colorBg);
+    color: var(--colorTema1);
     height: 40px;
     padding: 0% 10px;
-    border-radius: 5px;
     width: max-content;
+    transition: transform 0.2 ease;
+    border: 4px solid var(--colorTema1) ;
+    border-radius: 5px;
 }
 button:hover{
-    background-color: var(--colorText);
+    background: linear-gradient(to bottom, var(--colorBg)10%, var(--colortTema3));
+    box-shadow: 1px 1px 4px var(--colorBg);
+    
+    border-radius: 5px;
     color: var(--colorTema1);
 }
+button:active{
+    transform: scale(0.90);
+}
+#cambiarBg{
+    font-size: 30px; 
+    cursor: pointer;
+}
+.oscuro{
+    background-color: var(--colortTema2);
+}
+
+
+.liHistorial{
+    border-bottom:solid 2px var(--colorTema1);
+    padding-bottom: 8px;
+    font-size: 13px;
+
+}
+
 input{
     border-radius: 5px;
     height: 40px;
     width: 80%;
     max-width: 400px;
-    border: solid 2px var(--colorBg);
+    border: solid 4px var(--colorBg);
     text-align: center;
-    color:var(--colorTema1);
+    color: #0E2148;
     font-weight: 600;
     font-size: 15px;
     margin-right: 30px;
+    border: solid 4px var(--colorTema1);
+}
+input:hover{
+    border: solid 4px var(--colortTema3);
 }
 
 ::placeholder{
-    color:var(--colorTema1);
+    color: #0E2148;
     font-weight: 600;
     text-align: center;
     font-size: 12px; 
 }
 #conteiner-input{
     display: flex;
-    border-right: solid 4px var(--colorTema1);
+   
 }
 #conteiner-detalles{
     display: flex;
@@ -90,42 +138,45 @@ input{
 }
 
 i{
-    color: var(--colorText);
+    color: var(--colorTema1);
 }
 
 #botones{
-    
     display: flex;
     gap: 20px;
 }
 .conteiner-contenido {
-    background-color: var(--colorTema1);
+    background-color: var(--colorBg);
     border-radius: 8px;
     width: 100%; height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     padding: 10px;
-    color: var(--colorText);
-    text-shadow: 4px 4px 6px black;
+    color: var(--colorTema1);
     animation: aparecer 2s ease-in-out ;
+    border: solid 4px var(--colorTema1);
+    box-shadow: 2px 2px 4px black;
 }
 
 @keyframes aparecer {
     0%{opacity: 0.1;}
+    100%{opacity: 1;}
 }
 .weather{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: solid 2px var(--colortTema3);
+    border-bottom: solid 2px var(--colorTema1);
+    
+    
 
    
 }
 h3, p{
     font-family: "Audiowide", sans-serif;
-    font-weight: 400;
     font-style: normal;
+    font-weight: bold;
 }
 h2{
     text-align: center;
@@ -136,7 +187,10 @@ h2{
     gap: 10px;
 }
 #imgClima{
-    width: 50px; height: 50px;
+    width: 100px;
+    position: relative;
+    right: 50px;
+    
 }
 #name{
     display: flex;
@@ -156,11 +210,55 @@ ul li{
     list-style: none;
     font-size: 15px;
 }
+.conteinerWN{
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 70px;
+}
+.wetherNext{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    border: solid 4px var(--colorTema1);
+    background-color: var(--colorBg);
+    height: 150px; width: 100px;
+    min-height: fit-content; 
+    box-shadow: 2px 2px 4px black;
+    gap: 5px;
+    padding-left: 10px;
+    border-radius: 0% 10px 10px 0%;
+    transition: width 1s ease;
+    color: var(--colorTema1);
+     
+}
+.conteinerFecha{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    justify-content: space-around;
+}
+
+.wetherNext:hover{
+    width: 250px;
+    transition: width 1s ease;
+}
+.conteinerTemp{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
 @media (max-width: 768px) {
+    body{
+        height: 100%;
+        flex-direction: column-reverse;
+    }
     header{
         height: 200px;
         flex-wrap: wrap;
+        width: 100%;
     }
    #conteiner-input{
     flex-wrap: wrap;
@@ -171,18 +269,38 @@ ul li{
     margin-right: 0%;
    }
    #mostrar{
-    width: 380px;
+    height: 300px;
+    margin-bottom: 50px;
+    width: 80%;
+    align-self: center;
+  
    }
    #conteiner-inf{
-    margin-top: 200px;
+    margin-top: 225px;
    }
    #conteiner-detalles{
     flex-direction: column-reverse;
-
+    width: 100%;
    }
    #historial{
-    min-width: 300px;
+    min-width: 80%;
     align-self: center;
    }
 
+   .conteinerWN{
+    align-content: center;
+   }
+   .wetherNext{
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+   }
+   .conteinerFecha{
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+   }
+   .imgClima{
+    width: 80px;
+   }
 }

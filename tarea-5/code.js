@@ -2,113 +2,204 @@ const mostrar = document.getElementById('mostrar');
 const buscar = document.getElementById('buscar');
 const ubicacion = document.getElementById('ubicacion');
 const ul = document.querySelector('ul');
-const key = 'c0b72fe99b6039fa538260e9c114602e';
+const cambiarParametros= document.getElementById('change')
+let simbolo = '°C'
+let unidad = 'metric'
+
 
 
 let ciudadesBuscadas= []
-
+//aqui hacemos la peticion con el fecth a la api que tenemos
 const clima = async (busqueda,latLon) => {
+const key ='78bdaae64f8c484781913247252405'
 const city = document.getElementById('city').value.trim();
-const parametros = 'metric'
 
 let consulta = `q=${busqueda}`
   if(city){
     consulta = `q=${city}`
   } else if(latLon){
-    consulta = latLon 
-  }
-  const url = `https://api.openweathermap.org/data/2.5/weather?${consulta}&appid=${key}&units=${parametros}&lang=es`;
+    consulta = latLon }
+ 
+  const url = `http://api.weatherapi.com/v1/forecast.json?${consulta}&key=${key}&lang=es&days=5` ;
   try{
       const response = await fetch(url)
       const data = await response.json()
-      if(data.cod=== 200){
-        ciudadesBuscadas.push(data.name)
-        localStorage.setItem('lastCity', JSON.stringify(data.name))
+      // const {}= data.current.
+      console.log(data)
+     
+        const {name}= data.location
+        console.log(name)
+        ciudadesBuscadas.push(name)
+        localStorage.setItem('lastCity', JSON.stringify(name))
         localStorage.setItem('cities', JSON.stringify(ciudadesBuscadas))
-        crearDiv(data)
-      }else{
-        alert(`ciudad no encontrada`)
-      }}
+        currentWeather(data)
+        weatherNextDay(data)
+
+      }
   catch(error){
       console.log('error al cargar la informacion')
-  }
-}
 
+ 
+
+  }}
+
+
+//esta funcion nos ayuda a conseguir la latitud y longitud de una localizacion
+// para pasarsela a la api
 function obtenerUbicacion() {
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
         
-        console.log(`${lat} y ${lon}`)
-        clima(undefined,`lat=${lat}&lon=${lon}`)
+        console.log(`q=${lat},${lon}`)
+        clima(undefined,`q=${lat},${lon}`)
 
     }, () => {
         alert("No se pudo obtener tu ubicación.");
     });
 } else {
     alert("Tu navegador no soporta geolocalización.");
-}
-}
+}}
 
-
+//los botones de ubicacion
 ubicacion.addEventListener('click', obtenerUbicacion)
-
 buscar.addEventListener('click', ()=>{
   if(city.value===""){
   alert("por favor coloque una ciudad")
   }else{
   clima()
   city.value=''
-  }
+  }})
+
+//Procesamos la data y optenemos todos los datos que vamos a mostrar
+//creamos un div primero para almacenar y mostrar el contenido
+const currentWeather =(data)=>{
+
+const {icon,text}= data.current.condition
+const {name,country}= data.location
+const {feelslike_c,feelslike_f,humidity,temp_c,temp_f,wind_kph}= data.current
+
+//aqui tenemos el boton para cambiar el tipo de unidad que queremos utilizar 
+cambiarParametros.addEventListener('click',()=>{
+  const temp =document.getElementById('temp')
+  const feelLike =document.getElementById('feelLike')
+  const tempNext =document.querySelectorAll('.tempNext')
+  let i = 1
+if(simbolo=='°C'){
+  simbolo= '°F'
+  temp.innerText= `${parseInt(temp_f)} ${simbolo}`
+  feelLike.innerText= `${parseInt(feelslike_f)} ${simbolo}`
+  
+  tempNext.forEach(e=>{
+    e.innerText=`Avg ${parseInt(data.forecast.forecastday[i].day.avgtemp_f)} ${simbolo}`
+    i++
+  })
+}else{
+  simbolo= '°C'
+  temp.innerText= `${parseInt(temp_c)}${simbolo}`
+  feelLike.innerText= `${parseInt(feelslike_c)}${simbolo}`
+  tempNext.forEach(e=>{
+    e.innerText=`Avg ${parseInt(data.forecast.forecastday[i].day.avgtemp_c)} ${simbolo}`
+    i++
+  })
+}
+
 })
 
-const crearDiv =(data)=>{
   mostrar.innerHTML=`
   <div id="name">
-    <img id="imgClima" src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="Icono del clima">
-    <h2>${data.name} ${data.sys.country}</h2>
+    <img id="imgClima" src="https:${icon}" alt="Icono del clima">
+    <h2>${name}<br><br>${country}</h2>
   </div>
   <div class='weather'>
     <h3>Temperatura actual</h3>
-    <div class="datos"><i class="bi bi-thermometer-half"></i><p>${data.main.temp}°C</p></div>
+    <div class="datos"><i class="bi bi-thermometer-half"></i><p id="temp">${parseInt(temp_c)}${simbolo}</p></div>
   </div>
   <div class='weather'>
     <h3>Descricion del clima</h3>
-    <div class="datos"><p>${data.weather[0].description}</div>
+    <div class="datos"><p>${text}</div>
   </div>
   <div class='weather'>
     <h3>Humedad</h3>
-    <div class="datos"><i class="bi bi-moisture"></i><p>${data.main.humidity}%</p></div>
+    <div class="datos"><i class="bi bi-moisture"></i><p>${humidity}%</p></div>
   </div>
   <div class='weather'>
     <h3>Velocidad del viento</h3>
-    <div class="datos"><i class="bi bi-wind"></i><p>${data.wind.speed}Km/h</p></div>
+    <div class="datos"><i class="bi bi-wind"></i><p>${wind_kph}Km/h</p></div>
   </div>
   <div class='weather'>
     <h3>Sensacion termica</h3>
-    <div class="datos"><i class="bi bi-thermometer-high"></i><p>${data.main.feels_like}°C</p></div>
+    <div class="datos"><i class="bi bi-thermometer-high"></i><p id="feelLike">${parseInt(feelslike_c)}${simbolo}</p></div>
     </div>
   `
 }
 
+//esta funcion recupera el historial de ciudades buscadas guardados en local storage 
 const historialDeBusqueda= ()=>{
   const historial =JSON.parse(localStorage.getItem('cities'))
-  console.log(typeof(historial))
   for (const ciudad of historial) {
-      const li= document.createElement('li')
+    const li= document.createElement('li')
+    li.classList.add('liHistorial')
     li.innerHTML=`${ciudad}`
-    
     ul.appendChild(li)
   }
 }
 
-
+//recuperamos la ultima ciudad buscada 
 const ultimaBusqueda = ()=>{
   const busqueda =JSON.parse(localStorage.getItem('lastCity'))
-console.log(busqueda)
   clima(busqueda)
 }
+
+const btnToggle = document.getElementById('cambiarBg')
+btnToggle.addEventListener('click', ()=>{
+  let body=document.querySelector('body')
+  let cambiarStilo = document.documentElement.style
+
+  body.classList.toggle('oscuro')
+ 
+  if (btnToggle.classList.contains('bi-toggle-on')) {
+    btnToggle.classList.replace('bi-toggle-on', 'bi-toggle-off');
+  } else {
+    btnToggle.classList.replace('bi-toggle-off', 'bi-toggle-on');
+  }
+  if(body.classList[0]=='oscuro'){
+    console.log(document.querySelector('body').classList[0])
+      cambiarStilo.setProperty(`--colorBg`, '#0E2148')
+      cambiarStilo.setProperty(`--colorTema1`, '#fff')
+  }else{
+      cambiarStilo.setProperty(`--colorBg`, '#fff')
+      cambiarStilo.setProperty(`--colorTema1`, '#0E2148')
+  }
+
+})
+
+const weatherNextDay = (data)=>{
+const body = document.querySelector('.conteinerWN')
+const {forecastday}= data.forecast
+console.log(forecastday)
+body.innerHTML=""
+for (let index = 1; index < forecastday.length; index++) {
+  const element = forecastday[index];
+  
+  const div = document.createElement('div')
+    div.classList.add('wetherNext')
+    div.innerHTML= `
+    <div class="conteinerFecha">
+      <img class="imgClima" src="https:${element.day.condition.icon}" alt="Icono del clima">
+      <h3>${element.date}</h3>
+    </div>
+    <div class="conteinerTemp">          
+      <p>${element.day.condition.text}</p>
+      <p class="tempNext">Avg ${element.day.avgtemp_c}${simbolo}</p>
+    </div> 
+      ` 
+    body.appendChild(div)
+    
+}
+}
+
 
 ultimaBusqueda()
 historialDeBusqueda()

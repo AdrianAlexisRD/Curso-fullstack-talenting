@@ -12,15 +12,20 @@
 </head>
 <body>
     <header>
-        <h1><span id="logo">EL CLIMA</span></h1>
-            <section id="conteiner-input">
+        <div id="conteinerLogo">
+            <h1><span id="logo"><i id="logoCloud" class="bi bi-cloud-fill"></i>WEATHER</span></h1>
+        </div>
+        <section id="conteiner-input">
             <input id="city" type="text" name="city" placeholder="Coloque la ciudad">
             <div id="botones">
                 <button id="buscar">Buscar</button>
-                <button id="ubicacion">ubicacion</button>
+                <button id="ubicacion"><i class="bi bi-geo-alt-fill"></i></button>
+                <button id="change">°C/°F</button>
+               <i id="cambiarBg" class="bi bi-toggle-on"></i>
             </div>
         </section>
     </header>
+    <section class="conteinerWN"></section>
     <section id="conteiner-inf">
         <section class="conteiners" id="conteiner-detalles">
             <section class="conteiner-contenido" id="mostrar"></section>
