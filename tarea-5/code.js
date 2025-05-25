@@ -180,15 +180,19 @@ const body = document.querySelector('.conteinerWN')
 const {forecastday}= data.forecast
 console.log(forecastday)
 body.innerHTML=""
+const fecha = new Date()
+const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+
 for (let index = 1; index < forecastday.length; index++) {
   const element = forecastday[index];
-  
+  const diaNombre = diasSemana[`${fecha.getDay()+index%(7-fecha.getDay())}`];
+  console.log(diaNombre);
   const div = document.createElement('div')
     div.classList.add('wetherNext')
     div.innerHTML= `
     <div class="conteinerFecha">
       <img class="imgClima" src="https:${element.day.condition.icon}" alt="Icono del clima">
-      <h3>${element.date}</h3>
+      <h3>${diaNombre}</h3>
     </div>
     <div class="conteinerTemp">          
       <p>${element.day.condition.text}</p>
@@ -203,3 +207,5 @@ for (let index = 1; index < forecastday.length; index++) {
 
 ultimaBusqueda()
 historialDeBusqueda()
+
+

@@ -300,7 +300,8 @@ ul li{
     width: 100%;
     align-items: center;
    }
-   .imgClima{
+   #imgClima{
     width: 80px;
+    right: 0%;
    }
 }
