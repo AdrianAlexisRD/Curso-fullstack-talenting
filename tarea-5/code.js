@@ -4,7 +4,6 @@ const ubicacion = document.getElementById('ubicacion');
 const ul = document.querySelector('ul');
 const cambiarParametros= document.getElementById('change')
 let simbolo = '°C'
-let unidad = 'metric'
 
 
 
@@ -88,17 +87,17 @@ cambiarParametros.addEventListener('click',()=>{
   let i = 1
 if(simbolo=='°C'){
   simbolo= '°F'
-  temp.innerText= `${parseInt(temp_f)} ${simbolo}`
+  temp.innerHTML= `${parseInt(temp_f)} <span id='simbolo'>${simbolo}</span>`
   feelLike.innerText= `${parseInt(feelslike_f)} ${simbolo}`
   
-  tempNext.forEach(e=>{
-    e.innerText=`Avg ${parseInt(data.forecast.forecastday[i].day.avgtemp_f)} ${simbolo}`
+  tempNext.forEach(temp=>{
+    temp.innerText=`Avg ${parseInt(data.forecast.forecastday[i].day.avgtemp_f)} ${simbolo}`
     i++
   })
 }else{
   simbolo= '°C'
-  temp.innerText= `${parseInt(temp_c)}${simbolo}`
-  feelLike.innerText= `${parseInt(feelslike_c)}${simbolo}`
+  temp.innerHTML= `${parseInt(temp_c)}<span id='simbolo'>${simbolo}</span>`
+  feelLike.innerHTML= `${parseInt(feelslike_c)}${simbolo}`
   tempNext.forEach(p=>{
     p.innerText=`Avg ${parseInt(data.forecast.forecastday[i].day.avgtemp_c)} ${simbolo}`
     i++
@@ -108,30 +107,28 @@ if(simbolo=='°C'){
 })
 
   mostrar.innerHTML=`
-<span id='logoNw' ><i id='logoI' class="bi bi-cloud"></i></span>
   <div id="name">
     <img id="imgClima" src="https:${icon}" alt="Icono del clima">
     <h2>${name}<br><br>${country}</h2>
+    <span id='logoNw' ><i id='logoI' class="bi bi-cloud"></i></span>
+  <div class="datos"><p id="temp">${parseInt(temp_c)}<span id='simbolo'>${simbolo}</span></p></div>
+
   </div>
   <div class='weather'>
-    <h3>Temperatura actual</h3>
-    <div class="datos"><i class="bi bi-thermometer-half"></i><p id="temp">${parseInt(temp_c)}${simbolo}</p></div>
-  </div>
-  <div class='weather'>
-    <h3>Descricion del clima</h3>
+    <h3><i class="bi bi-clouds"></i> Descricion del clima</h3>
     <div class="datos"><p>${text}</div>
   </div>
   <div class='weather'>
-    <h3>Humedad</h3>
-    <div class="datos"><i class="bi bi-moisture"></i><p>${humidity}%</p></div>
+    <h3><i class="bi bi-moisture"></i> Humedad</h3>
+    <div class="datos"><p>${humidity}%</p></div>
   </div>
   <div class='weather'>
-    <h3>Velocidad del viento</h3>
-    <div class="datos"><i class="bi bi-wind"></i><p>${wind_kph}Km/h</p></div>
+    <h3><i class="bi bi-wind"></i> Velocidad del viento</h3>
+    <div class="datos"><p>${wind_kph}Km/h</p></div>
   </div>
   <div class='weather'>
-    <h3>Sensacion termica</h3>
-    <div class="datos"><i class="bi bi-thermometer-high"></i><p id="feelLike">${parseInt(feelslike_c)}${simbolo}</p></div>
+    <h3><i class="bi bi-thermometer-high"></i> Sensacion termica</h3>
+    <div class="datos"><p id="feelLike">${parseInt(feelslike_c)}${simbolo}</p></div>
     </div>
   `
 }
@@ -197,16 +194,14 @@ for (let index = 1; index < forecastday.length; index++) {
       <h3>${diaNombre}</h3>
     </div>
     <div class="conteinerTemp">          
-      <p>${element.day.condition.text}</p>
-      <p class="tempNext">Avg ${element.day.avgtemp_c}${simbolo}</p>
+      <p class='pText'>${element.day.condition.text}</p>
+      <p ><i class="bi bi-moisture"> </i>${element.day.avghumidity}%</p>
+      <p class="tempNext"><i class="bi bi-thermometer-half"> </i> ${parseInt(element.day.avgtemp_c)}${simbolo}</p>
     </div> 
       ` 
     body.appendChild(div)
     
-}
-}
-
-
+}}
 ultimaBusqueda()
 historialDeBusqueda()
 
