@@ -13,7 +13,7 @@
     font-style: normal;
     /* text-shadow: 2px 2px 6px var(--colortTema2); */
 }
-#logo{
+.logo{
     background: linear-gradient(to bottom, #fff 30%, #B2FFFF);
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -26,11 +26,24 @@
     border-radius: 5px;
     padding: 8px;
 }
+#logoNw{
+ position: absolute;
+ z-index: 1;
+ left: 35%;
+ opacity: 0.2;
+
+ 
+}
+#logoI{
+    font-size: 500px;
+    animation: aparecer 2s ease-in-out ;
+    color: #14131a;
+}
 h1{
     display: flex;
     
 }
-#logoCloud{
+.logoCloud{
     font-size: 50px;
     margin-right: 5px;
 }
@@ -50,7 +63,7 @@ header{
 }
 body{
     justify-self: center;
-    background-color: var(--colorText);
+    background-color: #e8e6df;
     width: 95vw; height: 100vh;
     display: flex;
     justify-content: space-between;
@@ -73,11 +86,10 @@ button{
     border-radius: 5px;
 }
 button:hover{
-    background: linear-gradient(to bottom, var(--colorBg)10%, var(--colortTema3));
+    background-color: var(--colorTema1) ;
     box-shadow: 1px 1px 4px var(--colorBg);
-    
     border-radius: 5px;
-    color: var(--colorTema1);
+    color: var(--colorBg);
 }
 button:active{
     transform: scale(0.90);
@@ -136,7 +148,17 @@ input:hover{
 .conteiners{
     width: 50%;
 }
-
+#iconU{
+    color: var(--colorTema1);
+    font-size: 35px;
+}
+#ubicacion{
+    border: none;
+    padding: 0% 0%;
+}
+#iconU:hover{
+    color: var(--colorBg);
+}
 i{
     color: var(--colorTema1);
 }
@@ -168,10 +190,7 @@ i{
     flex-direction: row;
     justify-content: space-between;
     border-bottom: solid 2px var(--colorTema1);
-    
-    
-
-   
+    z-index: 2;
 }
 h3, p{
     font-family: "Audiowide", sans-serif;
@@ -196,6 +215,7 @@ h2{
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 2;
 }
 #encabezado{
     color: var(--colorTema1);
@@ -237,7 +257,11 @@ ul li{
     display: flex;
     flex-direction: column;
     width: 100px;
-    justify-content: space-around;
+    border-right:solid 2px var(--colorTema1);
+    height: 70%;
+    align-self: center;
+    justify-content: center;
+    padding-right: 10px;
 }
 
 .wetherNext:hover{
@@ -259,6 +283,7 @@ ul li{
         height: 200px;
         flex-wrap: wrap;
         width: 100%;
+        padding-bottom: 30px;
     }
    #conteiner-input{
     flex-wrap: wrap;
@@ -276,7 +301,7 @@ ul li{
   
    }
    #conteiner-inf{
-    margin-top: 225px;
+    margin-top: 270px;
    }
    #conteiner-detalles{
     flex-direction: column-reverse;
@@ -294,14 +319,28 @@ ul li{
     width: 250px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    
    }
    .conteinerFecha{
     flex-direction: row;
-    width: 100%;
+    width: 80%; height: fit-content;
+    align-items: center;
+    border-right: none;
+    gap: 15px;
+    padding-right: 0%;
+    border-bottom: solid 2px var(--colorTema1);
+    padding-bottom: 10px;
+
+   }
+   .conteinerTemp{
     align-items: center;
    }
    #imgClima{
     width: 80px;
     right: 0%;
    }
+   #logoI{
+    font-size: 250px;
+}
 }
