@@ -99,8 +99,8 @@ if(simbolo=='°C'){
   simbolo= '°C'
   temp.innerText= `${parseInt(temp_c)}${simbolo}`
   feelLike.innerText= `${parseInt(feelslike_c)}${simbolo}`
-  tempNext.forEach(e=>{
-    e.innerText=`Avg ${parseInt(data.forecast.forecastday[i].day.avgtemp_c)} ${simbolo}`
+  tempNext.forEach(p=>{
+    p.innerText=`Avg ${parseInt(data.forecast.forecastday[i].day.avgtemp_c)} ${simbolo}`
     i++
   })
 }
@@ -108,6 +108,7 @@ if(simbolo=='°C'){
 })
 
   mostrar.innerHTML=`
+<span id='logoNw' ><i id='logoI' class="bi bi-cloud"></i></span>
   <div id="name">
     <img id="imgClima" src="https:${icon}" alt="Icono del clima">
     <h2>${name}<br><br>${country}</h2>
@@ -190,6 +191,7 @@ for (let index = 1; index < forecastday.length; index++) {
   const div = document.createElement('div')
     div.classList.add('wetherNext')
     div.innerHTML= `
+    
     <div class="conteinerFecha">
       <img class="imgClima" src="https:${element.day.condition.icon}" alt="Icono del clima">
       <h3>${diaNombre}</h3>
