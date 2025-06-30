@@ -224,32 +224,25 @@ if(simbolo=='°C'){
   <div class='weather'>
     <h3>Sensacion termica</h3>
     <div class="datos"><i class="bi bi-thermometer-high"></i><p id="feelLike">${parseInt(feelslike_c)}${simbolo}</p></div>
->>>>>>> b9aa70837a224779c029fa39ece883c152f1679c
     </div>
   `
 }
 
-<<<<<<< HEAD
 //esta funcion recupera el historial de las ciudades buscadas guardado en local storage 
-=======
 //esta funcion recupera el historial de ciudades buscadas guardados en local storage 
->>>>>>> b9aa70837a224779c029fa39ece883c152f1679c
 const historialDeBusqueda= ()=>{
   const historial =JSON.parse(localStorage.getItem('cities'))
   for (const ciudad of historial) {
     const li= document.createElement('li')
     li.classList.add('liHistorial')
     li.innerHTML=`${ciudad}`
-<<<<<<< HEAD
       ulHitorial.appendChild(li)
   }
   ulHitorial.addEventListener('click', (e)=>{
     clima(e.target.innerText)
   })
-=======
     ul.appendChild(li)
   }
->>>>>>> b9aa70837a224779c029fa39ece883c152f1679c
 }
 
 //recuperamos la ultima ciudad buscada 
@@ -258,7 +251,7 @@ const ultimaBusqueda = ()=>{
   clima(busqueda)
 }
 
-<<<<<<< HEAD
+
 // con esta funcion guardamos los nombres de las ciudades en favorito
 function guardarFavoritos(city){
   city?nombresFavoritos.add(city): console.log('ciudad es igual a nada')
@@ -310,16 +303,13 @@ ulFavorito.addEventListener('click', (e)=>{
   }}
 )
 //cambiamos estilos
-=======
->>>>>>> b9aa70837a224779c029fa39ece883c152f1679c
+
 const btnToggle = document.getElementById('cambiarBg')
 btnToggle.addEventListener('click', ()=>{
   let body=document.querySelector('body')
   let cambiarStilo = document.documentElement.style
-<<<<<<< HEAD
-=======
 
->>>>>>> b9aa70837a224779c029fa39ece883c152f1679c
+
   body.classList.toggle('oscuro')
  
   if (btnToggle.classList.contains('bi-toggle-on')) {
@@ -331,7 +321,6 @@ btnToggle.addEventListener('click', ()=>{
     console.log(document.querySelector('body').classList[0])
       cambiarStilo.setProperty(`--colorBg`, '#0E2148')
       cambiarStilo.setProperty(`--colorTema1`, '#fff')
-<<<<<<< HEAD
       cambiarStilo.setProperty(`--colorTema2`, '#fff')
   }else{
       cambiarStilo.setProperty(`--colorBg`, '#fff')
@@ -343,7 +332,6 @@ btnToggle.addEventListener('click', ()=>{
 const weatherNextDay = (data)=>{
 const body = document.querySelector('.conteinerWN')
 const {forecastday}= data.forecast
-=======
   }else{
       cambiarStilo.setProperty(`--colorBg`, '#fff')
       cambiarStilo.setProperty(`--colorTema1`, '#0E2148')
@@ -355,26 +343,23 @@ const weatherNextDay = (data)=>{
 const body = document.querySelector('.conteinerWN')
 const {forecastday}= data.forecast
 console.log(forecastday)
->>>>>>> b9aa70837a224779c029fa39ece883c152f1679c
 body.innerHTML=""
 const fecha = new Date()
 const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
-<<<<<<< HEAD
+
 for (let i = 1; i < forecastday.length; i++) {
   const element = forecastday[i];
   const diaNombre = diasSemana[(fecha.getDay() + i) % 7];
   const div = document.createElement('div')
     div.classList.add('wetherNext')
     div.id=`card${i}`
-=======
 for (let index = 1; index < forecastday.length; index++) {
   const element = forecastday[index];
   const diaNombre = diasSemana[`${fecha.getDay()+index%(7-fecha.getDay())}`];
   console.log(diaNombre);
   const div = document.createElement('div')
     div.classList.add('wetherNext')
->>>>>>> b9aa70837a224779c029fa39ece883c152f1679c
     div.innerHTML= `
     
     <div class="conteinerFecha">
@@ -382,7 +367,7 @@ for (let index = 1; index < forecastday.length; index++) {
       <h3>${diaNombre}</h3>
     </div>
     <div class="conteinerTemp">          
-<<<<<<< HEAD
+
       <p class='pText'>${element.day.condition.text}</p>
       <p ><i class="bi bi-moisture"> </i>${element.day.avghumidity}%</p>
       <p class="tempNext"><i class="bi bi-thermometer-half"> </i> ${parseInt(element.day.avgtemp_c)}${simbolo}</p>
@@ -421,7 +406,6 @@ cambiarParametros.addEventListener('click', cambiarSimbolos)
 ultimaBusqueda()
 historialDeBusqueda()
 nombresGuadados()
-=======
       <p>${element.day.condition.text}</p>
       <p class="tempNext">Avg ${element.day.avgtemp_c}${simbolo}</p>
     </div> 
@@ -436,4 +420,3 @@ ultimaBusqueda()
 historialDeBusqueda()
 
 
->>>>>>> b9aa70837a224779c029fa39ece883c152f1679c
