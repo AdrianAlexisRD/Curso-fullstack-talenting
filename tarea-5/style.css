@@ -50,7 +50,7 @@ header{
 }
 body{
     justify-self: center;
-    background-color: var(--colorText);
+    background-color: #e8e6df;
     width: 95vw; height: 100vh;
     display: flex;
     justify-content: space-between;
