@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Cedarville+Cursive&family=Exile&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>Clima</title>
+    <title>WEATHER</title>
 </head>
 <body>
     <header>
@@ -16,23 +16,32 @@
             <h1><span class="logo"><i class="bi bi-cloud-fill logoCloud"></i>WEATHER</span></h1>
         </div>
         <section id="conteiner-input">
-            <input id="city" type="text" name="city" placeholder="Coloque la ciudad">
+            <input id="city" type="text" name="city" placeholder="Coloque la ciudad" >
+            
             <div id="botones">
                 <button id="buscar">Buscar</button>
-                <button id="ubicacion"><i id="iconU" class="bi bi-geo-alt-fill"></i></button>
                 <button id="change">°C/°F</button>
+                <i id="iconU" class="bi bi-geo-alt-fill"></i>
+                <i id="favorito" class="bi bi-star-fill"></i>
                <i id="cambiarBg" class="bi bi-toggle-off"></i>
             </div>
         </section>
     </header>
     <section class="conteinerWN"></section>
     <section id="conteiner-inf">
-        <section class="conteiners" id="conteiner-detalles">
-            <section class="conteiner-contenido" id="mostrar"></section>
+            <section class="conteiners" id="conteiner-detalles">
+                <section class="conteiner-contenido" id="mostrar">
+            </section>
             <section class="conteiner-contenido" id="historial">
-                <ul>
+                <ul id="ulHitorial">
                     <h2>historial</h2>
                 </ul>
+                <div>
+                    <h2>favorito</h2>
+                    <ul id="ulFavorito">
+                    </ul>
+                </div>
+
             </section>
         </section>
     </section>

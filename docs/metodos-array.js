@@ -72,7 +72,7 @@ const elemento = document.getElementById('resultado');
 console.log("hola")
 let nuevoArray = Array.map(element => element+10);
 
-let numerosFiltrados= nuevoArray.filter(element=> element >= 18 )
+let numerosFiltrados= nuevoArray.filter(element=> {element >= 18} )
 
 console.log(numerosFiltrados)
 console.log(nuevoArray)
